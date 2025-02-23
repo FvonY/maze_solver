@@ -28,18 +28,24 @@ def test_playground(win):
     
 def main():
     win = Window(800, 600)
+    #seeds...
+    # 12312512
 
     #test_playground(win)
     point = Point(20, 20)
-    maze = Maze(point, 8, 10, 50, win)
-    
+    # maze = Maze(point, 23, 30, 25, win)
+    maze = Maze(point, 10, 10, 50, win)
+    #input("Press to start")
     maze._break_walls_r(0,0)
+    maze._reset_visited()
+    maze.solve()
     win.running = True
-    while win.running:       
-        win.clear()
-        maze._draw_cells()
+    #while win.running:      
+        #maze._break_walls_r(0,0) 
+        #win.clear()
+        #maze._draw_cells()
     
-    #win.wait_for_close()
+    win.wait_for_close()
 
 
 if __name__ == "__main__":

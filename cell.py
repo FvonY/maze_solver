@@ -2,11 +2,10 @@ from window import Window
 from geometry import Line, Point
 
 
-class Cell():
-    edge_length = 50
-    
-    def __init__(self, window: Window, top_left: Point):
+class Cell():  
+    def __init__(self, window: Window, top_left: Point, edge_length):
         self._window = window
+        self.edge_length = edge_length
         self._top_left = top_left
         self._top_right = Point(top_left.x + self.edge_length, top_left.y)
         self._bottom_right = Point(top_left.x + self.edge_length, top_left.y + self.edge_length)
@@ -14,7 +13,6 @@ class Cell():
         
         ## Order: top, right, bottom, left
         self.walls = [True for i in range(4)]
-        
         self.visited = False
         
     def draw(self):
