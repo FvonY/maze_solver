@@ -4,18 +4,18 @@ from geometry import Line
 
 class Window():
     def __init__(self, width, height):
-        self.__root = Tk()
-        self.__root.title = "Mazer"
-        self.__root.protocol("WM_DELETE_WINDOW", self.close)
+        self._root = Tk()
+        self._root.title = "Mazer"
+        self._root.protocol("WM_DELETE_WINDOW", self.close)
 
-        self.__canvas = Canvas(width=width, height=height)
-        self.__canvas.pack(fill='both')
+        self._canvas = Canvas(width=width, height=height, background='gray16')
+        self._canvas.pack(fill='both')
 
         self.running = False
 
     def redraw(self):
-        self.__root.update_idletasks()
-        self.__root.update()
+        self._root.update_idletasks()
+        self._root.update()
 
     def wait_for_close(self):
         self.running = True
@@ -26,4 +26,4 @@ class Window():
         self.running = False
         
     def draw_line(self, line: Line, fill_color: str):
-        line.draw(self.__canvas, fill_color)
+        line.draw(self._canvas, fill_color)
