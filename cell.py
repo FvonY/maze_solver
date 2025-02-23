@@ -16,14 +16,26 @@ class Cell():
         self.walls = [True for i in range(4)]
         
     def draw(self):
-        if self.has_top_wall():
-            self._window.draw_line(Line(self._top_left, self._top_right), 'green')
-        if self.has_right_wall():
-            self._window.draw_line(Line(self._top_right, self._bottom_right), 'blue')
-        if self.has_bottom_wall():
-            self._window.draw_line(Line(self._bottom_right, self._bottom_left), 'red')
-        if self.has_left_wall():
-            self._window.draw_line(Line(self._bottom_left, self._top_left), 'yellow')
+        debug_color = False
+        wall_color = "gray100"
+        if debug_color:
+            if self.has_top_wall():
+                self._window.draw_line(Line(self._top_left, self._top_right), 'green')
+            if self.has_right_wall():
+                self._window.draw_line(Line(self._top_right, self._bottom_right), 'blue')
+            if self.has_bottom_wall():
+                self._window.draw_line(Line(self._bottom_right, self._bottom_left), 'red')
+            if self.has_left_wall():
+                self._window.draw_line(Line(self._bottom_left, self._top_left), 'yellow')
+        else:
+            if self.has_top_wall():
+                self._window.draw_line(Line(self._top_left, self._top_right), wall_color)
+            if self.has_right_wall():
+                self._window.draw_line(Line(self._top_right, self._bottom_right), wall_color)
+            if self.has_bottom_wall():
+                self._window.draw_line(Line(self._bottom_right, self._bottom_left), wall_color)
+            if self.has_left_wall():
+                self._window.draw_line(Line(self._bottom_left, self._top_left), wall_color)
             
     def draw_connection(self, target_cell: "Cell", undo=False):
         connection_line = Line(self.get_center(), target_cell.get_center())

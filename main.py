@@ -30,7 +30,7 @@ def main():
 
     #test_playground(win)
     point = Point(20, 20)
-    maze = Maze(point, 5, 5, 50, win)
+    maze = Maze(point, 10, 10, 50, win)
     maze._draw_cells()
     
     win.wait_for_close()
