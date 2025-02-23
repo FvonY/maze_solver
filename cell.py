@@ -12,6 +12,7 @@ class Cell():
         self._bottom_right = Point(top_left.x + self.edge_length, top_left.y + self.edge_length)
         self._bottom_left = Point(top_left.x, top_left.y + self.edge_length)
         
+        ## Order: top, right, bottom, left
         self.walls = [True for i in range(4)]
         
     def draw(self):
@@ -23,6 +24,14 @@ class Cell():
             self._window.draw_line(Line(self._bottom_right, self._bottom_left), 'red')
         if self.has_left_wall():
             self._window.draw_line(Line(self._bottom_left, self._top_left), 'yellow')
+            
+    def draw_connection(self, target_cell: "Cell", undo=False):
+        connection_line = Line(self.get_center(), target_cell.get_center())
+        self._window.draw_line(connection_line, "red" if undo else "springgreen")
+            
+    def get_center(self):
+        return Point(self._top_left.x + self.edge_length / 2,
+                     self._top_left.y + self.edge_length / 2)
         
     def has_top_wall(self):
         return self.walls[0]

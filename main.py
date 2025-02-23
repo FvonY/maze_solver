@@ -17,6 +17,14 @@ def main():
     
     cell_damage.draw()
     
+    cell3 = Cell(win, Point(50,250))
+    cell3.walls = [0,1,1,0]
+    cell3.draw()
+    
+    cell.draw_connection(cell_damage)
+    cell.draw_connection(cell3, True)
+    cell3.draw_connection(cell_damage)
+    
     win.wait_for_close()
 
 
