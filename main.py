@@ -1,11 +1,10 @@
 from window import Window
 from geometry import Line, Point
 from cell import Cell
+from maze import Maze
 
 
-def main():
-    win = Window(800, 600)
-    
+def test_playground(win):
     Line1 = Line(Point(0,0), Point(500,500))
     win.draw_line(Line1, 'red')
     
@@ -24,6 +23,15 @@ def main():
     cell.draw_connection(cell_damage)
     cell.draw_connection(cell3, True)
     cell3.draw_connection(cell_damage)
+    
+    
+def main():
+    win = Window(800, 600)
+
+    #test_playground(win)
+    point = Point(20, 20)
+    maze = Maze(point, 5, 5, 50, win)
+    maze._draw_cells()
     
     win.wait_for_close()
 
