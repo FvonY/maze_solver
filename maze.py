@@ -46,6 +46,8 @@ class Maze():
     def _draw_moves(self):
         for line in self.moves:
             self._window.draw_line(line, "green")
+            self._window.redraw()
+            sleep(0.02)
         for undo in self.undos:
             self._window.draw_line(undo, "red")
     
@@ -132,12 +134,7 @@ class Maze():
     
     def solve(self, i=0, j=0):
         def solve_r(i, j):
-            #self._window.clear()
-            #self._draw_cells()
-            #self._draw_moves()
-            #sleep(0.000625)
-            
-            #print(len(self.moves))
+            sleep(0.0125)
             
             cell: Cell
             cell = self._cells[i][j]
@@ -146,51 +143,51 @@ class Maze():
             if (i,j) == (self._rows-1, self._cols-1):
                 return True
             
+            def draw_helper(cell: Cell, other: Cell, fill_color: str):
+                self._window.draw_line(Line(cell.get_center(), other_cell.get_center()), fill_color)
+                self._window.redraw()
+            
             ## possible neighbors
             # top
             if i != 0:
-                top_cell: Cell
-                top_cell = self._cells[i-1][j]
-                if not top_cell.visited and not cell.has_top_wall():
-                    self.moves.append(Line(cell.get_center(), top_cell.get_center()))
+                other_cell: Cell
+                other_cell = self._cells[i-1][j]
+                if not other_cell.visited and not cell.has_top_wall():
+                    draw_helper(cell, other_cell, "green")
                     if solve_r(i-1, j):
                         return True
                     else:
-                        self.undos.append(Line(cell.get_center(), top_cell.get_center()))
-                        pass
+                        draw_helper(cell, other_cell, "red")
             # right
             if j != self._cols-1:
-                right_cell: Cell
-                right_cell = self._cells[i][j+1]
-                if not right_cell.visited and not cell.has_right_wall():
-                    self.moves.append(Line(cell.get_center(), right_cell.get_center()))
+                other_cell: Cell
+                other_cell = self._cells[i][j+1]
+                if not other_cell.visited and not cell.has_right_wall():
+                    draw_helper(cell, other_cell, "green")
                     if solve_r(i, j+1):
                         return True
                     else:
-                        self.undos.append(Line(cell.get_center(), right_cell.get_center()))
-                        pass
+                        draw_helper(cell, other_cell, "red")
             # bottom
             if i != self._rows-1:
-                bottom_cell: Cell
-                bottom_cell = self._cells[i+1][j]
-                if not bottom_cell.visited and not cell.has_bottom_wall():
-                    self.moves.append(Line(cell.get_center(), bottom_cell.get_center()))
+                other_cell: Cell
+                other_cell = self._cells[i+1][j]
+                if not other_cell.visited and not cell.has_bottom_wall():
+                    draw_helper(cell, other_cell, "green")
                     if solve_r(i+1, j):
                         return True
                     else:
-                        self.undos.append(Line(cell.get_center(), bottom_cell.get_center()))
-                        pass
+                        draw_helper(cell, other_cell, "red")
             # left
             if j != 0:
-                left_cell: Cell
-                left_cell = self._cells[i][j-1]
-                if not left_cell.visited and not cell.has_left_wall():
-                    self.moves.append(Line(cell.get_center(), left_cell.get_center()))
+                other_cell: Cell
+                other_cell = self._cells[i][j-1]
+                if not other_cell.visited and not cell.has_left_wall():
+                    draw_helper(cell, other_cell, "green")
                     if solve_r(i, j-1):
                         return True
                     else:
-                        self.undos.append(Line(cell.get_center(), left_cell.get_center()))
-                        pass
+                        draw_helper(cell, other_cell, "red")
             return False       
         return solve_r(i, j)
     

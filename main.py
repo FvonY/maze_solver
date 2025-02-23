@@ -41,12 +41,6 @@ def main():
     maze._draw_cells()
     maze.solve()
     print("solved")
-    maze._draw_moves()
-    win.running = True
-    #while win.running:      
-        #maze._break_walls_r(0,0) 
-        #win.clear()
-        #maze._draw_cells()
     
     win.wait_for_close()
 
