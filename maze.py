@@ -119,9 +119,9 @@ class Maze():
                 cell.walls[3] = False
                 other_cell.walls[1] = False
                 
-            self._window.clear()
-            self._draw_cells()
-            sleep(0.000625)
+            # self._window.clear()
+            # self._draw_cells()
+            # sleep(0.000625)
                 
             self._break_walls_r(chosen_direction[0], chosen_direction[1])
             
@@ -132,10 +132,12 @@ class Maze():
     
     def solve(self, i=0, j=0):
         def solve_r(i, j):
-            self._window.clear()
-            self._draw_cells()
-            self._draw_moves()
-            sleep(0.000625)
+            #self._window.clear()
+            #self._draw_cells()
+            #self._draw_moves()
+            #sleep(0.000625)
+            
+            #print(len(self.moves))
             
             cell: Cell
             cell = self._cells[i][j]

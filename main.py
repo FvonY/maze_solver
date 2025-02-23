@@ -33,12 +33,15 @@ def main():
 
     #test_playground(win)
     point = Point(20, 20)
-    # maze = Maze(point, 23, 30, 25, win)
-    maze = Maze(point, 10, 10, 50, win)
+    maze = Maze(point, 23, 30, 25, win)
+    #maze = Maze(point, 10, 10, 50, win)
     #input("Press to start")
     maze._break_walls_r(0,0)
     maze._reset_visited()
+    maze._draw_cells()
     maze.solve()
+    print("solved")
+    maze._draw_moves()
     win.running = True
     #while win.running:      
         #maze._break_walls_r(0,0) 
