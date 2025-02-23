@@ -121,10 +121,6 @@ class Maze():
                 cell.walls[3] = False
                 other_cell.walls[1] = False
                 
-            # self._window.clear()
-            # self._draw_cells()
-            # sleep(0.000625)
-                
             self._break_walls_r(chosen_direction[0], chosen_direction[1])
             
     def _reset_visited(self):
