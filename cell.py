@@ -15,6 +15,8 @@ class Cell():
         ## Order: top, right, bottom, left
         self.walls = [True for i in range(4)]
         
+        self.visited = False
+        
     def draw(self):
         debug_color = False
         wall_color = "gray100"

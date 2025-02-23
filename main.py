@@ -2,6 +2,7 @@ from window import Window
 from geometry import Line, Point
 from cell import Cell
 from maze import Maze
+from time import sleep
 
 
 def test_playground(win):
@@ -30,10 +31,15 @@ def main():
 
     #test_playground(win)
     point = Point(20, 20)
-    maze = Maze(point, 10, 10, 50, win)
-    maze._draw_cells()
+    maze = Maze(point, 8, 10, 50, win)
     
-    win.wait_for_close()
+    maze._break_walls_r(0,0)
+    win.running = True
+    while win.running:       
+        win.clear()
+        maze._draw_cells()
+    
+    #win.wait_for_close()
 
 
 if __name__ == "__main__":

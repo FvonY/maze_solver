@@ -12,6 +12,9 @@ class Window():
         self._canvas.pack(fill='both')
 
         self.running = False
+        
+    def clear(self):
+        self._canvas.delete("all")
 
     def redraw(self):
         self._root.update_idletasks()
